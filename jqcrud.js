@@ -1,21 +1,29 @@
 $(function() {
   loadRecipies();
   $("#recipes").on("click",".btn-danger",handlebutondel);
+  $("#recipes").on("click",".btn-warning",handleupdate);
   $("#addBtn").click(addrecpie);
 });
+
+function handleupdate(){
+  $("#updatemodel").modal("show");
+}
+
 function addrecpie(){
   var title=$("#title").val();
   var body=$("#body").val();
+  console.log(body);
   alert("wer");
+  
   $.ajax({
-
-    url:"https://usman-recipes.herokuapp.com/api/recipes",
-    method:"POST",
-    data:{title,body},
-    success:function(response){
+    url: "https://usman-recipes.herokuapp.com/api/recipes",
+    method: "POST",
+    data: { title, body },
+    success: function(response) {
       console.log(response);
-      console.log(6);
+
       loadRecipies();
+
     }
   });
 }
